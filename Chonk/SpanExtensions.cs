@@ -22,15 +22,15 @@ internal static class SpanExtensions
 
     internal static int IndexOf(this ReadOnlySpan<char> text, string delimiter, int startIndex)
     {
-        return text.IndexOf(delimiter, startIndex, StringComparison.CurrentCulture);
+        return text.IndexOf(delimiter, startIndex, StringComparison.Ordinal);
     }
 
     internal static int IndexOf(this ReadOnlySpan<char> text, string delimiter, int startIndex,
         StringComparison comparisonType)
     {
-        if (startIndex < 0 || startIndex > text.Length + 1)
+        if (startIndex < 0 || startIndex >= text.Length)
         {
-            throw new IndexOutOfRangeException("startIndex out of range");
+            throw new IndexOutOfRangeException($"{nameof(startIndex)} out of range");
         }
 
         var indexWithoutAddingStartIndex = text.Slice(startIndex).IndexOf(delimiter.AsSpan(), comparisonType);

@@ -27,9 +27,10 @@ public class SpanExtensionsTest
     public void IndexOfThrowsOnStartIndexOutOfBounds()
     {
         var document = "ooo.ooo.ooo";
-
-        Assert.Throws<IndexOutOfRangeException>(() => document.AsSpan().IndexOf(".", 11));
         Assert.Throws<IndexOutOfRangeException>(() => document.AsSpan().IndexOf(".", -1));
+        Assert.That(document.AsSpan().IndexOf(".", 0), Is.EqualTo(3));
+        Assert.That(document.AsSpan().IndexOf(".", 10), Is.EqualTo(-1));
+        Assert.Throws<IndexOutOfRangeException>(() => document.AsSpan().IndexOf(".", 11));
     }
     
     [TestCase(".", new int[] { 3, 7 })]
