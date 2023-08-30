@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <Configuration>Release</Configuration>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.7" />
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.7" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="0.20.230821.4-preview" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Chonk.Tests\Chonk.Tests.csproj" />
+    <ProjectReference Include="..\Chonk\Chonk.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\TestResources\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
